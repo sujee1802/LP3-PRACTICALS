@@ -1,0 +1,50 @@
+import pandas as pd
+
+
+df= pd.read_csv("C:\\Users\\Asus\\Downloads\\Compressed\\A-10 Bhargav Balinge\\ML\\Assignment 2\\emails.csv")
+df.shape
+
+df.head()
+
+x = df.drop(['Email No.', 'Prediction'], axis=1)
+
+y = df['Prediction']
+
+x.shape
+
+set(x.dtypes)
+
+import seaborn as sns
+sns.countplot (x=y)
+
+y.value_counts()
+
+from sklearn.preprocessing import MinMaxScaler
+x_scaled = MinMaxScaler().fit_transform(x)
+x_scaled
+
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x_scaled, y, random_state=0, test_size=0.25)
+
+x_scaled.shape
+
+x_train.shape
+
+x_test.shape
+
+from sklearn.neighbors import KNeighborsClassifier
+
+knn.fit(x_train,y_train)
+
+y_pred = knn.predict(x_test)
+
+from sklearn.metrics import ConfusionMatrixDisplay, accuracy_score
+from sklearn.metrics import classification_report
+
+ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
+
+y_test.value_counts()
+
+accuracy_score(y_test,y_pred)
+
+print(classification_report(y_test, y_pred))
