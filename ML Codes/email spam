@@ -48,3 +48,13 @@ y_test.value_counts()
 accuracy_score(y_test,y_pred)
 
 print(classification_report(y_test, y_pred))
+
+from sklearn.svm import SVC
+
+svm = SVC(kernel='linear')
+
+svm.fit(x_train, y_train)
+
+y_pred = svm.predict(x_test)
+
+accuracy_score(y_test, y_pred)
